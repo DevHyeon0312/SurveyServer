@@ -1,6 +1,10 @@
 # SurveyServer
 - 설문조사 백엔드 : Springboot + JPA + MySQL -> with NAT
 
+#
+
+------
+
 
 ### Rest API
 |주소|타입|기능|
@@ -103,6 +107,9 @@
 </div>
 </details>
 
+#
+
+------
 
 ### DB [ Table & Column ]
 |테이블명|간단설명|
