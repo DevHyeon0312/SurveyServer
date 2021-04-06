@@ -1,7 +1,9 @@
 # SurveyServer
 - 설문조사 백엔드 : Springboot + JPA + MySQL -> with NAT
 
-#
+## 실행영상
+
+![화면 기록 2021-04-06 오후 4 36 29](https://user-images.githubusercontent.com/72678200/113675805-b3f17880-96f6-11eb-96f8-2622da079554.gif)
 
 ------
 
