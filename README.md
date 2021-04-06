@@ -3,8 +3,8 @@
 
 
 ### Rest API
-|주소|타입|기능||
-|:-------------|:-------:|:-----:|:--------:|
+|주소|타입|기능|
+|:-------------|:-------:|:-----:|
 |protocol:://addr:port/survey/createSurvey|POST|설문생성||
 |protocol:://addr:port/survey/getSurveyTitle|GET|만들어진 설문 전체 조회||
 |protocol:://addr:port/survey/getSurveyDetail?titleId=|GET|타이틀 아이디에 해당하는 설문 상세조회||
