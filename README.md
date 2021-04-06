@@ -145,7 +145,7 @@
         </tr>
         <tr>
             <td rowspan=3 style="text-align: center">survey_question</td>
-            <td style="text-align: center">id></td>
+            <td style="text-align: center">id</td>
             <td style="text-align: center">bigint</td>
             <td style="text-align: center">설문의 아이디</td>
             <td style="text-align: center">✔</td>
