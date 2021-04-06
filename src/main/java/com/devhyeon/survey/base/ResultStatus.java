@@ -11,6 +11,4 @@ import lombok.NoArgsConstructor;
 public class ResultStatus {
     private int messageCode;
     private String messageText;
-    private Object messageTrace;
-    private String messageClass;
 }

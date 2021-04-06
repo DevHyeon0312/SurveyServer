@@ -13,10 +13,10 @@ import java.io.Serializable;
  * 답변 목록
  * ColumnName   Type                Description
  * ---------------------------------------------
- * id           [int]               설문아이디
- * question_id  [int]               문항아이디
- * answer_id    [int]               답변아이디
- * answer_msg   [varchar(1024)]     답변내용
+ * id           [bigint]               설문아이디
+ * question_id  [bigint]               문항아이디
+ * answer_id    [bigint]               답변아이디
+ * answer_msg   [varchar(1024)]        답변내용
  * ---------------------------------------------
  * Primary : (id, question_id)      복합키
  * */

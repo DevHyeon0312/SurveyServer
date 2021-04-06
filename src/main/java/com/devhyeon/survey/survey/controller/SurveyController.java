@@ -5,28 +5,22 @@ import com.devhyeon.survey.base.ApiStatus;
 import com.devhyeon.survey.base.ResultStatus;
 import com.devhyeon.survey.survey.entity.AnswerEntity;
 import com.devhyeon.survey.survey.entity.QuestionEntity;
-import com.devhyeon.survey.survey.model.Answer;
-import com.devhyeon.survey.survey.model.Question;
-import com.devhyeon.survey.survey.model.Survey;
 import com.devhyeon.survey.survey.entity.TitleEntity;
-import com.devhyeon.survey.survey.model.Title;
+import com.devhyeon.survey.survey.entity.UserAnswerEntity;
+import com.devhyeon.survey.survey.model.*;
 import com.devhyeon.survey.survey.repository.AnswerRepository;
 import com.devhyeon.survey.survey.repository.QuestionRepository;
 import com.devhyeon.survey.survey.repository.TitleRepository;
+import com.devhyeon.survey.survey.repository.UserAnsRepository;
 import jdk.jfr.Description;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.*;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -35,14 +29,17 @@ public class SurveyController {
     private TitleRepository titleRepository;
     private QuestionRepository questionRepository;
     private AnswerRepository answerRepository;
+    private UserAnsRepository userAnsRepository;
 
     @Autowired
     SurveyController(TitleRepository titleRepository,
                      QuestionRepository questionRepository,
-                     AnswerRepository answerRepository) {
+                     AnswerRepository answerRepository,
+                     UserAnsRepository userAnsRepository) {
         this.titleRepository = titleRepository;
         this.questionRepository = questionRepository;
         this.answerRepository = answerRepository;
+        this.userAnsRepository = userAnsRepository;
     }
 
     @Description("만들어진 설문 조회")
@@ -55,7 +52,6 @@ public class SurveyController {
                         ResultStatus.builder()
                                 .messageCode(ApiStatus.RESULT_OK.key())
                                 .messageText(ApiStatus.RESULT_OK.value())
-                                .messageClass(this.getClass().getSimpleName())
                                 .build()
                 ).build();
         return response;
@@ -102,7 +98,6 @@ public class SurveyController {
                         ResultStatus.builder()
                                 .messageCode(ApiStatus.RESULT_OK.key())
                                 .messageText(ApiStatus.RESULT_OK.value())
-                                .messageClass(this.getClass().getSimpleName())
                                 .build()
                 ).build();
         return response;
@@ -119,7 +114,6 @@ public class SurveyController {
                         ResultStatus.builder()
                                 .messageCode(ApiStatus.RESULT_OK.key())
                                 .messageText(ApiStatus.RESULT_OK.value())
-                                .messageClass(this.getClass().getSimpleName())
                                 .build()
                 ).build();
         TitleEntity title  = titleRepository.save(survey.getTitle().toEntity());
@@ -131,6 +125,75 @@ public class SurveyController {
                 System.out.println(answer);
                 answerRepository.save(answer.toEntity(titleId,questionId));
             }
+        }
+        return response;
+    }
+
+    @Transactional
+    @Description("설문결과 조회")
+    @GetMapping("getResult")
+    public ApiResponse getResultDetail(@RequestParam long userId, @RequestParam long titleId) {
+        ApiResponse response;
+
+        List<UserAnswerEntity> answerEntities = userAnsRepository.findAll().stream().filter(obj->obj.getId() == titleId).collect(Collectors.toList());
+
+        SurveyResult result = new SurveyResult();
+        result.setUserId(userId);
+        result.setTitleId(titleId);
+        List<UserAns> resultList = new ArrayList<>();
+        boolean isUser = false;
+        HashMap<Long,HashMap<Long,Integer>> hashMap = new HashMap<>();
+        for (UserAnswerEntity entity : answerEntities) {
+            isUser = entity.getUser_id() == userId || isUser;
+            resultList.add(new UserAns(entity.getQuestion_id(),entity.getAnswer_id()));
+            //question 문항을
+            if (!hashMap.containsKey(entity.getQuestion_id())) {
+                hashMap.put(entity.getQuestion_id(), new HashMap<>());
+            }
+            //answer 번호로 답한 인원
+            hashMap.get(entity.getQuestion_id()).merge(entity.getAnswer_id(),1, Integer::sum);
+        }
+        result.setUserAnsList(null);
+        result.setCountList(hashMap);
+
+        if (isUser) {
+            response = ApiResponse.builder()
+                    .resultData(result)
+                    .resultStatus(
+                            ResultStatus.builder()
+                                    .messageCode(ApiStatus.RESULT_OK.key())
+                                    .messageText(ApiStatus.RESULT_OK.value())
+                                    .build()
+                    ).build();
+        } else {
+            response = ApiResponse.builder()
+                    .resultData("등록한 답변이 없습니다.")
+                    .resultStatus(
+                            ResultStatus.builder()
+                                    .messageCode(ApiStatus.RESULT_OK.key())
+                                    .messageText(ApiStatus.RESULT_OK.value())
+                                    .build()
+                    ).build();
+        }
+
+        return response;
+    }
+
+    @Transactional
+    @Description("설문결과 등록")
+    @PostMapping("addResult")
+    public ApiResponse CreateResult(@RequestBody @Valid SurveyResult surveyResult) {
+        final ApiResponse response = ApiResponse.builder().resultData("답변등록이 완료되었습니다.")
+                .resultStatus(
+                        ResultStatus.builder()
+                                .messageCode(ApiStatus.RESULT_OK.key())
+                                .messageText(ApiStatus.RESULT_OK.value())
+                                .build()
+                ).build();
+        long userId = surveyResult.getUserId();
+        long titleId = surveyResult.getTitleId();
+        for (UserAns userAns : surveyResult.getUserAnsList()) {
+            userAnsRepository.save(userAns.toEntity(userId, titleId));
         }
         return response;
     }

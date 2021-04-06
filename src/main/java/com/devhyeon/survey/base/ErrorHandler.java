@@ -23,8 +23,6 @@ public class ErrorHandler {
                         ResultStatus.builder()
                                 .messageCode(ApiStatus.RESULT_ERROR.key())
                                 .messageText(ApiStatus.RESULT_ERROR.value())
-                                .messageTrace("알수없음")
-                                .messageClass(this.getClass().getSimpleName())
                                 .build()
                 ).build();
 
@@ -46,8 +44,6 @@ public class ErrorHandler {
                         ResultStatus.builder()
                                 .messageCode(ApiStatus.RESULT_ERROR.key())
                                 .messageText(ApiStatus.RESULT_ERROR.value())
-                                .messageTrace(message)
-                                .messageClass(this.getClass().getSimpleName())
                                 .build()
                 ).build();
 
@@ -63,8 +59,6 @@ public class ErrorHandler {
                         ResultStatus.builder()
                                 .messageCode(ApiStatus.RESULT_ERROR.key())
                                 .messageText(ApiStatus.RESULT_ERROR.value())
-                                .messageTrace("StackOverflowError")
-                                .messageClass(this.getClass().getSimpleName())
                                 .build()
                 ).build();
 
@@ -80,8 +74,6 @@ public class ErrorHandler {
                         ResultStatus.builder()
                                 .messageCode(ApiStatus.RESULT_ERROR.key())
                                 .messageText(ApiStatus.RESULT_ERROR.value())
-                                .messageTrace("StackOverflowError")
-                                .messageClass(this.getClass().getSimpleName())
                                 .build()
                 ).build();
 
@@ -96,8 +88,6 @@ public class ErrorHandler {
                         ResultStatus.builder()
                                 .messageCode(ApiStatus.RESULT_ERROR.key())
                                 .messageText(ApiStatus.RESULT_ERROR.value())
-                                .messageTrace("StackOverflowError")
-                                .messageClass(this.getClass().getSimpleName())
                                 .build()
                 ).build();
 
