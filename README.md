@@ -131,86 +131,86 @@
     </thead>
     <tbody>
         <tr>
-            <td rowspan=2><center>survey_title</center></td>
-            <td><center>id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>설문의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td rowspan=2 style="text-align: center">survey_title</td>
+            <td style="text-align: center">id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">설문의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>title</center></td>
-            <td><center>varchar(1024)</center></td>
-            <td><center>설문의 제목</center></td>
-            <td><center></center></td>
+            <td style="text-align: center">title</td>
+            <td style="text-align: center">varchar(1024)</td>
+            <td style="text-align: center">설문의 제목</td>
+            <td style="text-align: center"></td>
         </tr>
         <tr>
-            <td rowspan=3><center>survey_question</center></td>
-            <td><center>id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>설문의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td rowspan=3 style="text-align: center">survey_question</td>
+            <td style="text-align: center">id></td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">설문의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>question_id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>문항의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td style="text-align: center">question_id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">문항의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>question_msg</center></td>
-            <td><center>varchar(1024)</center></td>
-            <td><center>문항의 내용</center></td>
-            <td><center></center></td>
+            <td style="text-align: center">question_msg</td>
+            <td style="text-align: center">varchar(1024)</td>
+            <td style="text-align: center">문항의 내용</td>
+            <td style="text-align: center"></td>
         </tr>
         <tr>
-            <td rowspan=4><center>survey_answer</center></td>
-            <td><center>id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>설문의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td rowspan=4 style="text-align: center">survey_answer</td>
+            <td style="text-align: center">id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">설문의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>question_id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>문항의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td style="text-align: center">question_id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">문항의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>answer_id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>세부문항의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td style="text-align: center">answer_id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">세부문항의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>answer_msg</center></td>
-            <td><center>varchar(1024)</center></td>
-            <td><center>세부문항의 내용</center></td>
-            <td><center></center></td>
+            <td style="text-align: center">answer_msg</td>
+            <td style="text-align: center">varchar(1024)</td>
+            <td style="text-align: center">세부문항의 내용</td>
+            <td style="text-align: center"></td>
         </tr>
         <tr>
-            <td rowspan=4><center>survey_user</center></td>
-            <td><center>user_id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>유저의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td rowspan=4 style="text-align: center">survey_user</td>
+            <td style="text-align: center">user_id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">유저의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>설문의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td style="text-align: center">id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">설문의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>question_id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>문항의 아이디</center></td>
-            <td><center>✔</center></td>
+            <td style="text-align: center">question_id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">문항의 아이디</td>
+            <td style="text-align: center">✔</td>
         </tr>
         <tr>
-            <td><center>answer_id</center></td>
-            <td><center>bigint</center></td>
-            <td><center>세부문항의 아이디</center></td>
-            <td><center></center></td>
+            <td style="text-align: center">answer_id</td>
+            <td style="text-align: center">bigint</td>
+            <td style="text-align: center">세부문항의 아이디</td>
+            <td style="text-align: center"></td>
         </tr>
     </tbody>
 </table>
