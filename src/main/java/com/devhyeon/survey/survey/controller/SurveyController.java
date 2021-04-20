@@ -167,7 +167,7 @@ public class SurveyController {
                     ).build();
         } else {
             response = ApiResponse.builder()
-                    .resultData("등록한 답변이 없습니다.")
+                    .resultData(null)
                     .resultStatus(
                             ResultStatus.builder()
                                     .messageCode(ApiStatus.RESULT_OK.key())
